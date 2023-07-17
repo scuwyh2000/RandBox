@@ -1,2 +1,2 @@
 # RandBox
-Coming Soon.
+Coming Soon
