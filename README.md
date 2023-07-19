@@ -15,10 +15,10 @@
 ## Models
 Task | K-mAP | U-R | WI | A-OSE | Download
 --- |:---:|:---:|:---:|:---:|:---:
-[Task 1](configs/t1.yaml) | 61.8 | 10.6 | 0.0240 | 4498 |[model](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_coco_res50.pth)
-[Task 2](configs/t2_ft.yaml) | 45.3 | 6.3 | 0.0078 | 1880 |[model](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_coco_res101.pth)
-[Task 3](configs/t3_ft.yaml) | 39.4 | 7.8 | 0.0054 | 1452 |[model](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_coco_swinbase.pth)
-[Task 4](configs/t4_ft.yaml) | 35.4 | - | - | - |[model](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_lvis_res50.pth)
+[Task 1](configs/t1.yaml) | 61.8 | 10.6 | 0.0240 | 4498 |[model](https://drive.google.com/file/d/1HjvHm7YQ9VMUbU5mDIGmXg8BWtDqmGGn/view)
+[Task 2](configs/t2_ft.yaml) | 45.3 | 6.3 | 0.0078 | 1880 |[model](https://drive.google.com/file/d/1eAidoPpZh3Agm4hgBY9RP4zeZefnJmqJ/view)
+[Task 3](configs/t3_ft.yaml) | 39.4 | 7.8 | 0.0054 | 1452 |[model](https://drive.google.com/file/d/1LW8_5DZbjURdWejWdMdT1mdK-5NU9Z4p/view)
+[Task 4](configs/t4_ft.yaml) | 35.4 | - | - | - |[[model](https://drive.google.com/file/d/1ljZA2DZCxPt5FDkqdpMUqTW04X23CSwb/view)](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_lvis_res50.pth)
 
 
 ## Getting Started
