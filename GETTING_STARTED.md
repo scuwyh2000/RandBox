@@ -21,7 +21,7 @@ Thanks very much.
 <p align="center" ><img width='500' src = "https://imgur.com/9bzf3DV.png"></p> 
 <br>
 
-The splits are present inside `split/` folder. The datasets can be downloaded on [MS-COCO](https://cocodataset.org/#download)
+The splits are present inside `split/` folder. The images can be downloaded on [MS-COCO](https://cocodataset.org/#download) and the annotations can be downloaded on [annotations](https://drive.google.com/drive/folders/1nAWHdQ3kr48h6H5eTbhSBwEeAd4lpKp3?usp=drive_link)
 
 The files should be organized in the following structure:
 ```
@@ -29,25 +29,17 @@ RandBox/
 └── datasets/
     └── t1/
         └── annotations/
+            └──train.json
+            └──test.json
         └── images/
+            └──train/
+            └──test/
     └── t2/
-        └── annotations/
-        └── images/
     └── t2_ft/
-        └── annotations/
-        └── images/
     └── t3/
-        └── annotations/
-        └── images/
     └── t3_ft/
-        └── annotations/
-        └── images/
     └── t4/
-        └── annotations/
-        └── images/
     └── t4_ft/
-        └── annotations/
-        └── images/
 ```
 
 3. Prepare pretrain models
