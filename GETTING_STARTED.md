@@ -1,4 +1,4 @@
-## Getting Started with DiffusionDet
+## Getting Started with RandBox
 
 
 
@@ -17,16 +17,37 @@ Thanks very much.
 1. Install Detectron2 following https://github.com/facebookresearch/detectron2/blob/main/INSTALL.md#installation.
 
 2. Prepare datasets
+<br>
+<p align="center" ><img width='500' src = "https://imgur.com/9bzf3DV.png"></p> 
+<br>
+
+The splits are present inside `data/VOC2007/OWOD/ImageSets/` folder. The remaining dataset can be downloaded using this [link](https://drive.google.com/drive/folders/1S5L-YmIiFMAKTs6nHMorB0Osz5iWI31k?usp=sharing)
+
+The files should be organized in the following structure:
 ```
-mkdir -p datasets/coco
-mkdir -p datasets/lvis
-
-ln -s /path_to_coco_dataset/annotations datasets/coco/annotations
-ln -s /path_to_coco_dataset/train2017 datasets/coco/train2017
-ln -s /path_to_coco_dataset/val2017 datasets/coco/val2017
-
-ln -s /path_to_lvis_dataset/lvis_v1_train.json datasets/lvis/lvis_v1_train.json
-ln -s /path_to_lvis_dataset/lvis_v1_val.json datasets/lvis/lvis_v1_val.json
+RandBox/
+└── datasets/
+    └── t1/
+        └── annotations/
+        └── images/
+    └── t2/
+        └── annotations/
+        └── images/
+    └── t2_ft/
+        └── annotations/
+        └── images/
+    └── t3/
+        └── annotations/
+        └── images/
+    └── t3_ft/
+        └── annotations/
+        └── images/
+    └── t4/
+        └── annotations/
+        └── images/
+    └── t4_ft/
+        └── annotations/
+        └── images/
 ```
 
 3. Prepare pretrain models
@@ -52,12 +73,12 @@ cd ..
 Thanks for model conversion scripts of [ResNet-101](https://github.com/PeizeSun/SparseR-CNN/blob/main/tools/convert-torchvision-to-d2.py)
 and [Swin-Base](https://github.com/facebookresearch/Detic/blob/main/tools/convert-thirdparty-pretrained-model-to-d2.py).
 
-4. Train DiffusionDet
+4. Train RandBox
 ```
 bash run.sh
 ```
 
-5. Evaluate DiffusionDet
+5. Evaluate RandBox
 ```
 bash run_eval.sh
 ```
