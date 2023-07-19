@@ -21,7 +21,7 @@ Thanks very much.
 <p align="center" ><img width='500' src = "https://imgur.com/9bzf3DV.png"></p> 
 <br>
 
-The splits are present inside `split/` folder. The images can be downloaded on [MS-COCO](https://cocodataset.org/#download) and the annotations can be downloaded on [annotations](https://drive.google.com/drive/folders/1nAWHdQ3kr48h6H5eTbhSBwEeAd4lpKp3?usp=drive_link)
+The splits are present inside `split/` folder. The images can be downloaded on [MS-COCO](https://cocodataset.org/#download) and the annotations can be downloaded on [annotations](https://drive.google.com/drive/folders/1nAWHdQ3kr48h6H5eTbhSBwEeAd4lpKp3?usp=drive_link). The images should be splitted into different task directory according to the split/.
 
 The files should be organized in the following structure:
 ```
