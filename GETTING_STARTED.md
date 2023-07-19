@@ -21,7 +21,7 @@ Thanks very much.
 <p align="center" ><img width='500' src = "https://imgur.com/9bzf3DV.png"></p> 
 <br>
 
-The splits are present inside `data/VOC2007/OWOD/ImageSets/` folder. The remaining dataset can be downloaded using this [link](https://drive.google.com/drive/folders/1S5L-YmIiFMAKTs6nHMorB0Osz5iWI31k?usp=sharing)
+The splits are present inside `split/` folder. The datasets can be downloaded on [MS-COCO](https://cocodataset.org/#download)
 
 The files should be organized in the following structure:
 ```
