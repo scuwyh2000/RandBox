@@ -6,7 +6,7 @@
 
 
 > [**Random Boxes Are Open-world Object Detectors**](https://arxiv.org/abs/2307.08249)               
-> [Yanghao Wang], [Zhongqi Yue], [Xian-sheng Hua], [Hanwang Zhang]                 
+> Yanghao Wang, Zhongqi Yue, Xian-sheng Hua, Hanwang Zhang                 
 > *[arXiv 2307.08249](https://arxiv.org/pdf/2307.08249.pdf)* 
 
 ## Updates
