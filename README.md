@@ -23,12 +23,8 @@ Task | K-mAP | U-R | WI | A-OSE | Download
 
 ## Getting Started
 
-The installation instruction and usage are in [Getting Started with DiffusionDet](GETTING_STARTED.md).
+The installation instruction and usage are in [Getting Started with RandBox](GETTING_STARTED.md).
 
-
-## License
-
-This project is under the CC-BY-NC 4.0 license. See [LICENSE](LICENSE) for details.
 
 
 ## Citing DiffusionDet
