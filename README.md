@@ -2,7 +2,7 @@
 
 **RandBox is a novel and effective model for open-world object detection.**
 
-![](teaser.pdf)
+![](teaser.png)
 
 
 > [**DiffusionDet: Diffusion Model for Object Detection**](https://arxiv.org/abs/2211.09788)               
