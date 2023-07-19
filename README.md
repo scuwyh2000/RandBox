@@ -5,12 +5,12 @@
 ![](teaser.png)
 
 
-> [**DiffusionDet: Diffusion Model for Object Detection**](https://arxiv.org/abs/2211.09788)               
-> [Shoufa Chen](https://www.shoufachen.com/), [Peize Sun](https://peizesun.github.io/), [Yibing Song](https://ybsong00.github.io/), [Ping Luo](http://luoping.me/)                 
-> *[arXiv 2211.09788](https://arxiv.org/abs/2211.09788)* 
+> [**Random Boxes Are Open-world Object Detectors**](https://arxiv.org/abs/2307.08249)               
+> [Yanghao Wang], [Zhongqi Yue], [Xian-sheng Hua], [Hanwang Zhang]                 
+> *[arXiv 2307.08249](https://arxiv.org/pdf/2307.08249.pdf)* 
 
 ## Updates
-- (11/2022) Code is released.
+- (07/2023) Code is released.
 
 ## Models
 Method | Box AP (1 step) | Box AP (4 step) | Download
