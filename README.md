@@ -27,7 +27,7 @@ The installation instruction and usage are in [Getting Started with RandBox](GET
 
 
 
-## Citing DiffusionDet
+## Citing RandBox
 
 If you use RandBox in your research or wish to refer to the baseline results published here, please use the following BibTeX entry.
 
