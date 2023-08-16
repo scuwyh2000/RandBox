@@ -24,14 +24,14 @@ from detectron2.evaluation import COCOEvaluator, LVISEvaluator, verify_results
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.modeling import build_model
 
-from RandBox import RandBoxDatasetMapper, add_RandBox_config, RandBoxWithTTA
-from RandBox.util.model_ema import add_model_ema_configs, may_build_model_ema, may_get_ema_checkpointer, EMAHook, \
+from randBox import RandBoxDatasetMapper, add_RandBox_config, RandBoxWithTTA
+from randBox.util.model_ema import add_model_ema_configs, may_build_model_ema, may_get_ema_checkpointer, EMAHook, \
     apply_model_ema_and_restore, EMADetectionCheckpointer
 
 
 from detectron2.data import DatasetCatalog, MetadataCatalog
 from detectron2.data.datasets.coco import load_coco_json
-from RandBox.pascal_voc_evaluation import PascalVOCDetectionEvaluator
+from randBox.pascal_voc_evaluation import PascalVOCDetectionEvaluator
 
 class Register:
     """用于注册自己的数据集"""
