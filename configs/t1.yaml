@@ -4,7 +4,7 @@ MODEL:
   RESNETS:
     DEPTH: 50
     STRIDE_IN_1X1: False
-  DiffusionDet:
+  RandBox:
     NUM_PROPOSALS: 500
     NUM_CLASSES: 81
 DATASETS:
