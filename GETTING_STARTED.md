@@ -11,7 +11,6 @@ Thanks very much.
 - Linux or macOS with Python ≥ 3.6
 - PyTorch ≥ 1.9.0 and [torchvision](https://github.com/pytorch/vision/) that matches the PyTorch installation.
   You can install them together at [pytorch.org](https://pytorch.org) to make sure of this
-- OpenCV is optional and needed by demo and visualization
 
 #### Steps
 1. Install Detectron2 following https://github.com/facebookresearch/detectron2/blob/main/INSTALL.md#installation.
