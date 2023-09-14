@@ -374,7 +374,7 @@ if __name__ == "__main__":
     args = parser0.parse_args()
     print("Command Line Args:", args)
     launch(
-        main(args),
+        main,
         args.num_gpus,
         num_machines=args.num_machines,
         machine_rank=args.machine_rank,
