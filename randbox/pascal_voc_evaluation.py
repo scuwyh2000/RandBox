@@ -51,8 +51,8 @@ class PascalVOCDetectionEvaluator(DatasetEvaluator):
         """
         self._dataset_name = dataset_name
         meta = MetadataCatalog.get(dataset_name)
-        self._anno_file_template = os.path.join('./datasets', "Annotations/xml", "{}.xml")
-        self._image_set_path = os.path.join('./datasets', "test.txt")
+        self._anno_file_template = os.path.join('./datasets', "Annotations", "{}.xml")
+        self._image_set_path = os.path.join('./split', "all_task_test.txt")
         self._class_names = meta.thing_classes
         self._is_2007 = False
         # self._is_2007 = meta.year == 2007
