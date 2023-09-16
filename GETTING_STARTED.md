@@ -39,6 +39,7 @@ RandBox/
     └── t3_ft/
     └── t4/
     └── t4_ft/
+    └── Annotations/
 ```
 
 3. Prepare pretrain models
