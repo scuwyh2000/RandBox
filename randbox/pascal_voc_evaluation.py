@@ -82,11 +82,6 @@ class PascalVOCDetectionEvaluator(DatasetEvaluator):
             boxes = instances.pred_boxes.tensor.numpy()
             scores = instances.scores.tolist()
             classes = instances.pred_classes.tolist()
-#             topk = 10
-#             if len(scores) > topk:
-#                 threshold = scores[topk]
-#             else:
-#                 threshold = scores[-1]
             threshold = 0.15
             for box, score, cls in zip(boxes, scores, classes):
                 if score < threshold:
