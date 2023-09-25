@@ -45,8 +45,8 @@ def add_RandBox_config(cfg):
     
     # WARM_UP
     cfg.MODEL.RandBox.SIMILAR_THRESHOLD = 2.0
-    cfg.MODEL.RandBox.CHANGE_START = 500
-#     cfg.MODEL.RandBox.CHANGE_START = 0
+    # cfg.MODEL.RandBox.CHANGE_START = 500
+    cfg.MODEL.RandBox.CHANGE_START = 0
 
     
     
