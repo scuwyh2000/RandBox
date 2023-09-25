@@ -50,7 +50,7 @@ def add_RandBox_config(cfg):
 
     
     
-    # Diffusion
+    # RandBox
     cfg.MODEL.RandBox.SNR_SCALE = 2.0
     cfg.MODEL.RandBox.SAMPLE_STEP = 1
 
