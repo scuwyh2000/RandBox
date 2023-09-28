@@ -39,5 +39,14 @@ If you use RandBox in your research or wish to refer to the baseline results pub
       eprint={2307.08249},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
+},
+
+@InProceedings{Wang_2023_ICCV,
+    author    = {Wang, Yanghao and Yue, Zhongqi and Hua, Xian-Sheng and Zhang, Hanwang},
+    title     = {Random Boxes Are Open-world Object Detectors},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {6233-6243}
 }
 ```
