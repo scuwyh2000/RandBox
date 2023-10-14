@@ -32,15 +32,6 @@ The installation instruction and usage are in [Getting Started with RandBox](GET
 If you use RandBox in your research or wish to refer to the baseline results published here, please use the following BibTeX entry.
 
 ```BibTeX
-@misc{wang2023random,
-      title={Random Boxes Are Open-world Object Detectors}, 
-      author={Yanghao Wang and Zhongqi Yue and Xian-Sheng Hua and Hanwang Zhang},
-      year={2023},
-      eprint={2307.08249},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-},
-
 @InProceedings{Wang_2023_ICCV,
     author    = {Wang, Yanghao and Yue, Zhongqi and Hua, Xian-Sheng and Zhang, Hanwang},
     title     = {Random Boxes Are Open-world Object Detectors},
