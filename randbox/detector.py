@@ -303,7 +303,7 @@ class RandBox(nn.Module):
 
         if self.training:
             gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
-            targets, x_boxes, noises, t = self.prepare_targets(gt_instances)
+            targets, x_boxes, t = self.prepare_targets(gt_instances)
             t = t.squeeze(-1)
             x_boxes = x_boxes * images_whwh[:, None, :]
 
@@ -353,7 +353,6 @@ class RandBox(nn.Module):
     def prepare_targets(self, targets):
         new_targets = []
         diffused_boxes = []
-        noises = []
         ts = []
         for targets_per_image in targets:
             target = {}
@@ -364,7 +363,6 @@ class RandBox(nn.Module):
             gt_boxes = box_xyxy_to_cxcywh(gt_boxes)
             d_boxes, d_noise, d_t = self.prepare_diffusion_concat(gt_boxes)
             diffused_boxes.append(d_boxes)
-            noises.append(d_noise)
             ts.append(d_t)
             target["labels"] = gt_classes.to(self.device)
             target["boxes"] = gt_boxes.to(self.device)
@@ -375,7 +373,7 @@ class RandBox(nn.Module):
             target["area"] = targets_per_image.gt_boxes.area().to(self.device)
             new_targets.append(target)
 
-        return new_targets, torch.stack(diffused_boxes), torch.stack(noises), torch.stack(ts)
+        return new_targets, torch.stack(diffused_boxes), torch.stack(ts)
 
     def inference(self, box_cls, box_pred, image_sizes):
         """
