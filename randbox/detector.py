@@ -86,8 +86,7 @@ class RandBox(nn.Module):
         self.multiple_sample = cfg.MODEL.RandBox.M_STEP
         self.sampling_timesteps = default(sampling_timesteps, timesteps)
         assert self.sampling_timesteps <= timesteps
-        self.is_ddim_sampling = self.sampling_timesteps < timesteps
-        self.ddim_sampling_eta = 1.
+        self._sampling_eta = 1.
         self.self_condition = False
         self.scale = cfg.MODEL.RandBox.SNR_SCALE
         self.box_renewal = True
@@ -193,10 +192,10 @@ class RandBox(nn.Module):
         return ModelPrediction(pred_noise, x_start), outputs_class, outputs_coord
 
     @torch.no_grad()
-    def ddim_sample(self, batched_inputs, backbone_feats, images_whwh, images, clip_denoised=True, do_postprocess=True):
+    def _sample(self, batched_inputs, backbone_feats, images_whwh, images, clip_denoised=True, do_postprocess=True):
         batch = images_whwh.shape[0]
         shape = (batch, self.num_proposals, 4)
-        total_timesteps, sampling_timesteps, eta, objective = self.num_timesteps, self.sampling_timesteps, self.ddim_sampling_eta, self.objective
+        total_timesteps, sampling_timesteps, eta, objective = self.num_timesteps, self.sampling_timesteps, self._sampling_eta, self.objective
 
         # [-1, 0, 1, 2, ..., T-1] when sampling_timesteps == total_timesteps
         times = torch.linspace(-1, total_timesteps - 1, steps=sampling_timesteps + 1)
@@ -289,7 +288,7 @@ class RandBox(nn.Module):
         # Prepare Proposals.
         if not self.training:
             
-            results = self.ddim_sample(batched_inputs, features, images_whwh, images)
+            results = self._sample(batched_inputs, features, images_whwh, images)
             return results
 
         if self.training:
@@ -326,7 +325,7 @@ class RandBox(nn.Module):
         box_placeholder = torch.randn(self.num_proposals - num_gt, 4,
                                       device=self.device) / 6. + 0.5  # 3sigma = 1/2 --> sigma: 1/6
         box_placeholder[:, 2:] = torch.clip(box_placeholder[:, 2:], min=1e-4)
-        x_start = torch.randn(self.num_proposals, 4, device=self.device)
+        x = torch.randn(self.num_proposals, 4, device=self.device)
 
         x = (x_start * 2. - 1.) * self.scale
 
