@@ -320,39 +320,6 @@ class RandBox(nn.Module):
                     loss_dict[k] *= weight_dict[k]
             return loss_dict
 
-    def prepare_diffusion_repeat(self, gt_boxes):
-        """
-        :param gt_boxes: (cx, cy, w, h), normalized
-        :param num_proposals:
-        """
-        t = torch.randint(0, self.num_timesteps, (1,), device=self.device).long()
-        noise = torch.randn(self.num_proposals, 4, device=self.device)
-
-        num_gt = gt_boxes.shape[0]
-        if not num_gt:  # generate fake gt boxes if empty gt boxes
-            gt_boxes = torch.as_tensor([[0.5, 0.5, 1., 1.]], dtype=torch.float, device=self.device)
-            num_gt = 1
-
-        num_repeat = self.num_proposals // num_gt  # number of repeat except the last gt box in one image
-        repeat_tensor = [num_repeat] * (num_gt - self.num_proposals % num_gt) + [num_repeat + 1] * (
-                self.num_proposals % num_gt)
-        assert sum(repeat_tensor) == self.num_proposals
-        random.shuffle(repeat_tensor)
-        repeat_tensor = torch.tensor(repeat_tensor, device=self.device)
-
-        gt_boxes = (gt_boxes * 2. - 1.) * self.scale
-        x_start = torch.repeat_interleave(gt_boxes, repeat_tensor, dim=0)
-
-        # noise sample
-        x = self.q_sample(x_start=x_start, t=t, noise=noise)
-
-        x = torch.clamp(x, min=-1 * self.scale, max=self.scale)
-        x = ((x / self.scale) + 1) / 2.
-
-        diff_boxes = box_cxcywh_to_xyxy(x)
-
-        return diff_boxes, noise, t
-
     def prepare_diffusion_concat(self, gt_boxes):
         """
         :param gt_boxes: (cx, cy, w, h), normalized
