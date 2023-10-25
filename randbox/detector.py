@@ -259,15 +259,6 @@ class RandBox(nn.Module):
                 processed_results.append({"instances": r})
             return processed_results
 
-    # forward diffusion
-    def q_sample(self, x_start, t, noise=None):
-        if noise is None:
-            noise = torch.randn_like(x_start)
-
-        sqrt_alphas_cumprod_t = extract(self.sqrt_alphas_cumprod, t, x_start.shape)
-        sqrt_one_minus_alphas_cumprod_t = extract(self.sqrt_one_minus_alphas_cumprod, t, x_start.shape)
-
-        return sqrt_alphas_cumprod_t * x_start + sqrt_one_minus_alphas_cumprod_t * noise
 
     def forward(self, batched_inputs, do_postprocess=True):
         """
@@ -303,7 +294,7 @@ class RandBox(nn.Module):
 
         if self.training:
             gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
-            targets, x_boxes, t = self.prepare_targets(gt_instances)
+            targets, x_boxes = self.prepare_targets(gt_instances)
             t = t.squeeze(-1)
             x_boxes = x_boxes * images_whwh[:, None, :]
 
@@ -320,13 +311,12 @@ class RandBox(nn.Module):
                     loss_dict[k] *= weight_dict[k]
             return loss_dict
 
-    def prepare_diffusion_concat(self, gt_boxes):
+    def prepare_concat(self, gt_boxes):
         """
         :param gt_boxes: (cx, cy, w, h), normalized
         :param num_proposals:
         """
         t = torch.randint(0, self.num_timesteps, (1,), device=self.device).long()
-        noise = torch.randn(self.num_proposals, 4, device=self.device)
 
         num_gt = gt_boxes.shape[0]
         if not num_gt:  # generate fake gt boxes if empty gt boxes
@@ -338,17 +328,14 @@ class RandBox(nn.Module):
         box_placeholder[:, 2:] = torch.clip(box_placeholder[:, 2:], min=1e-4)
         x_start = torch.randn(self.num_proposals, 4, device=self.device)
 
-        x_start = (x_start * 2. - 1.) * self.scale
-
-        # noise sample
-        x = self.q_sample(x_start=x_start, t=t, noise=noise)
+        x = (x_start * 2. - 1.) * self.scale
 
         x = torch.clamp(x, min=-1 * self.scale, max=self.scale)
         x = ((x / self.scale) + 1) / 2.
 
         diff_boxes = box_cxcywh_to_xyxy(x)
 
-        return diff_boxes, noise, t
+        return diff_boxes
 
     def prepare_targets(self, targets):
         new_targets = []
@@ -361,9 +348,8 @@ class RandBox(nn.Module):
             gt_classes = targets_per_image.gt_classes
             gt_boxes = targets_per_image.gt_boxes.tensor / image_size_xyxy
             gt_boxes = box_xyxy_to_cxcywh(gt_boxes)
-            d_boxes, d_noise, d_t = self.prepare_diffusion_concat(gt_boxes)
+            d_boxes = self.prepare_concat(gt_boxes)
             diffused_boxes.append(d_boxes)
-            ts.append(d_t)
             target["labels"] = gt_classes.to(self.device)
             target["boxes"] = gt_boxes.to(self.device)
             target["boxes_xyxy"] = targets_per_image.gt_boxes.tensor.to(self.device)
@@ -373,7 +359,7 @@ class RandBox(nn.Module):
             target["area"] = targets_per_image.gt_boxes.area().to(self.device)
             new_targets.append(target)
 
-        return new_targets, torch.stack(diffused_boxes), torch.stack(ts)
+        return new_targets, torch.stack(diffused_boxes)
 
     def inference(self, box_cls, box_pred, image_sizes):
         """
