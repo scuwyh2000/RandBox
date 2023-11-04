@@ -109,7 +109,7 @@ class DynamicHead(nn.Module):
         )
         return box_pooler
 
-    def forward(self, features, init_bboxes, t, init_features):
+    def forward(self, features, init_bboxes, init_features):
 
         inter_class_logits = []
         inter_pred_bboxes = []
