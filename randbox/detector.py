@@ -180,7 +180,7 @@ class RandBox(nn.Module):
         
         x_boxes = box_cxcywh_to_xyxy(x_boxes)
         x_boxes = x_boxes * images_whwh[:, None, :]
-        outputs_class, outputs_coord = self.head(backbone_feats, x_boxes, t, None)
+        outputs_class, outputs_coord = self.head(backbone_feats, x_boxes, None)
 
         x_start = outputs_coord[-1]  # (batch, num_proposals, 4) predict boxes: absolute coordinates (x1, y1, x2, y2)
         x_start = x_start / images_whwh[:, None, :]
@@ -294,10 +294,9 @@ class RandBox(nn.Module):
         if self.training:
             gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
             targets, x_boxes = self.prepare_targets(gt_instances)
-            t = t.squeeze(-1)
             x_boxes = x_boxes * images_whwh[:, None, :]
 
-            outputs_class, outputs_coord = self.head(features, x_boxes, t, None)
+            outputs_class, outputs_coord = self.head(features, x_boxes, None)
             output = {'pred_logits': outputs_class[-1], 'pred_boxes': outputs_coord[-1]}
 
             if self.deep_supervision:
@@ -327,7 +326,7 @@ class RandBox(nn.Module):
         box_placeholder[:, 2:] = torch.clip(box_placeholder[:, 2:], min=1e-4)
         x = torch.randn(self.num_proposals, 4, device=self.device)
 
-        x = (x_start * 2. - 1.) * self.scale
+        x = (x * 2. - 1.) * self.scale
 
         x = torch.clamp(x, min=-1 * self.scale, max=self.scale)
         x = ((x / self.scale) + 1) / 2.
